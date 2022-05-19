@@ -1,0 +1,57 @@
+<div class="p-grid p-shadow-12">
+  <p-table [value]="profils" dataKey="id">
+      <ng-template pTemplate="header">
+          <tr>
+              <th style="width: 3rem"> #</th>
+              <th pSortableColumn="id">Id <p-sortIcon field="id"></p-sortIcon></th>
+              <th pSortableColumn="libelle">Libellé <p-sortIcon field="libelle"></p-sortIcon></th>
+              <th> Action</th>
+          </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-profil let-expanded="expanded">
+          <tr *ngIf="profil.statut == 1">
+              <td>
+                  <p-button class="p-button-text p-button-rounded p-button-raised p-button-plain" [pRowToggler]="profil" [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"> </p-button>
+              </td>
+              <td> {{profil.id}} </td>
+              <td> {{profil.libelle}} </td>
+              <td (click)="supprimer(profil)" *ngIf="profil.libelle != 'SUPER_ADMIN'"> <button pButton icon="pi pi-trash" class="p-mt-1 p-mb-1 p-button-rounded p-button-text p-button-danger" label="Supprimer"></button></td>
+              <td *ngIf="profil.libelle == 'SUPER_ADMIN'"> <p class="p-mt-1 p-mb-1 p-button-rounded p-button-text p-button-dark"> Impossible de supprimer</p></td>
+             </tr>
+      </ng-template>
+      <ng-template pTemplate="rowexpansion" let-profil>
+          <tr>
+              <td colspan="7">
+                  <div class="p-p-3">
+                      <p-table [value]="profil.users"  [paginator]="true" [rows]="3" [rowsPerPageOptions]=[3,4,5,6] dataKey="id">
+                          <ng-template pTemplate="header">
+                              <tr>
+                                  <th pSortableColumn="id">Id <p-sortIcon field="price"></p-sortIcon></th>
+                                  <th pSortableColumn="prenom">Prénom <p-sortIcon field="customer"></p-sortIcon></th>
+                                  <th pSortableColumn="nom">Nom <p-sortIcon field="date"></p-sortIcon></th>
+                                  <th pSortableColumn="email">Email <p-sortIcon field="amount"></p-sortIcon></th>
+                                  <th pSortableColumn="telephone">Téléphone <p-sortIcon field="status"></p-sortIcon></th>
+                              </tr>
+                          </ng-template>
+                          <ng-template pTemplate="body" let-user>
+                              <tr>
+                                  <td>{{user.id}}</td>
+                                  <td>{{user.prenom}}</td>
+                                  <td>{{user.nom}}</td>
+                                  <td>{{user.email}}</td>
+                                  <td><span>{{user.telephone}}</span></td>
+                              </tr>
+                          </ng-template>
+                          <ng-template pTemplate="emptymessage">
+                              <tr>
+                                  <td colspan="6">Il n'y a pas encore d'utilisateurs pour ce profil</td>
+                              </tr>
+                          </ng-template>
+                      </p-table>
+                  </div>
+              </td>
+          </tr>
+      </ng-template>
+
+  </p-table>
+  </div>

@@ -1,0 +1,29 @@
+<p-table [value]="meritoires" [paginator]="true" [rows]="10">
+  <ng-template pTemplate="caption">
+      <div class="p-d-flex p-ai-center p-jc-between">
+          Personnes de confiance
+          <p-button icon="pi pi-refresh"></p-button>
+      </div>
+  </ng-template>
+  <ng-template pTemplate="header">
+      <tr>
+          <th>#</th>
+          <th>Prénom & nom</th>
+          <th>Téléphone</th>
+          <th> Date </th>
+      </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-meritoire>
+      <tr>
+          <td>{{meritoire.id}}</td>
+          <td> {{meritoire.nomComplet}}</td>
+          <td>{{meritoire.telephone}}</td>
+          <td> {{meritoire.date}} </td>
+      </tr>
+  </ng-template>
+  <ng-template pTemplate="summary">
+      <div class="p-d-flex p-ai-center p-jc-between">
+          Au total, il y a  {{meritoires ? meritoires.length : 0 }} personnes de confiance.
+      </div>
+  </ng-template>
+</p-table>

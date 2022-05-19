@@ -1,0 +1,35 @@
+<p-table [value]="itineraires" [paginator]="true" [rows]="10">
+  <ng-template pTemplate="caption">
+      <div class="p-d-flex p-ai-center p-jc-between">
+          Itinéraires des utilisateurs
+          <p-button icon="pi pi-refresh"></p-button>
+      </div>
+  </ng-template>
+  <ng-template pTemplate="header">
+      <tr>
+          <th>#</th>
+          <th>Prénom & nom</th>
+          <th>Téléphone</th>
+          <th>Email</th>
+          <th>Départ</th>
+          <th>Arrivée</th>
+          <th> Date </th>
+      </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-iti>
+      <tr>
+          <td>{{iti.id}}</td>
+          <td> {{iti.user.prenom}} {{iti.user.nom}}</td>
+          <td>{{iti.user.telephone}}</td>
+          <td> {{iti.user.email}} </td>
+          <td>{{iti.depart}}</td>
+          <td> {{iti.arrivee}} </td>
+          <td> {{iti.date}} </td>
+      </tr>
+  </ng-template>
+  <ng-template pTemplate="summary">
+      <div class="p-d-flex p-ai-center p-jc-between">
+          Au total, il y a  {{itineraires ? itineraires.length : 0 }} itineraires.
+      </div>
+  </ng-template>
+</p-table>

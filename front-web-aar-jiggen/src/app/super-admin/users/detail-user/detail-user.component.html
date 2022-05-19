@@ -1,0 +1,114 @@
+<div class="shadow">
+  <div class="row">
+    <div class="col-md-3 divImage">
+      <img src="{{transform(data.photo)}}" class="w-50 image" alt="">
+    </div>
+    <div class="col-md-5">
+      <h2> Prénom et Nom : {{data.prenom}} {{data.nom}} </h2>
+      <h2> Email : {{data.email}} </h2>
+      <h2> Téléphone : {{data.telephone}} </h2>
+      <h2> Genre : {{data.sexe}}</h2>
+      <h2> Adresse : {{data.adresse}} </h2>
+    </div>
+  </div>
+
+  <br> <br> <br>
+  <h2> Liste de mes personnes de confiance</h2>
+  <div class="row">
+    <p-table class="" [value]="data.personneConfiances" datakey="id">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>#</th>
+          <th>Personnes de Confiance</th>
+          <th> Téléphone </th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-meritoire>
+        <tr>
+          <td>{{meritoire.id}}</td>
+          <td>{{meritoire.nomComplet}}</td>
+          <td> {{ meritoire.telephone }} </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+
+  <br> <br> <br>
+  <h2> Liste de mes itinéraires</h2>
+  <div class="row">
+    <p-table class="" [value]="data.itineraires" datakey="id">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>#</th>
+          <th>Départ</th>
+          <th> Destination </th>
+          <th> Date </th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-iti>
+        <tr>
+          <td>{{iti.id}}</td>
+          <td>{{iti.depart}}</td>
+          <td> {{ iti.arrivee }} </td>
+          <td> {{ iti.date }} </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+
+  <br> <br> <br>
+  <h2> Liste de mes avis</h2>
+  <div class="row">
+    <p-table class="" [value]="data.avis" datakey="id">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>#</th>
+          <th>Quartier</th>
+          <th> Eclairage </th>
+          <th> Vol </th>
+          <th> Viol </th>
+          <th> Agression </th>
+          <th> Transport </th>
+          <th> Qualité route </th>
+          <th> Description</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-avi>
+        <tr>
+          <td>{{avi.id}}</td>
+          <td>{{avi.quartier.nomQuartier}}</td>
+          <td> {{avi.eclairagePublique}} </td>
+          <td> {{ avi.vol }} </td>
+          <td>{{avi.viol}}</td>
+          <td>{{avi.agression}}</td>
+          <td> {{ avi.transport }} </td>
+          <td>{{avi.qualiteRoute}}</td>
+          <td> {{ avi.description }} </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+
+  <br> <br> <br>
+  <h2> Liste de mes alertes</h2>
+  <div class="row">
+    <p-table class="" [value]="data.alertes" datakey="id">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>#</th>
+          <th>Personne de confiance</th>
+          <th> Téléphone </th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-alerte>
+        <tr>
+          <td>{{alerte.id}}</td>
+          <td>{{alerte.meritoire.nomComplet}}</td>
+          <td> {{ alerte.date }} </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+
+  <br> <br> <br>
+</div>

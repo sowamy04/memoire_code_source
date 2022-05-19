@@ -1,0 +1,44 @@
+<p-toolbar styleClass="p-mb-4">
+  <ng-template pTemplate="left">
+    <button pButton pRipple label="Nouveau Organe" icon="pi pi-plus" class="p-button-primary p-mr-2" routerLink="add-organe"></button>
+  </ng-template>
+</p-toolbar>
+<div>
+  <router-outlet> </router-outlet>
+</div>
+<p-table [value]="organes" [paginator]="true" [rows]="6">
+  <ng-template pTemplate="caption">
+      <div class="p-d-flex p-ai-center p-jc-between">
+          Organes
+          <p-button icon="pi pi-refresh"></p-button>
+      </div>
+  </ng-template>
+  <ng-template pTemplate="header">
+      <tr>
+          <th>#</th>
+          <th>Nom</th>
+          <th>Téléphone</th>
+          <th>Email</th>
+          <th>Ville</th>
+          <th>Action</th>
+      </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-org>
+      <tr *ngIf="org.statut == true">
+          <td>{{org.id}}</td>
+          <td>{{org.nomOrgane}}</td>
+          <td>{{org.telephone}}</td>
+          <td> {{org.email}} </td>
+          <td>{{org.ville.nomVille}}</td>
+          <td>
+            <button pButton pRipple icon="pi pi-pencil" type="submit" class="p-button-rounded p-button-success p-mr-2" [routerLink]="[org.id+'/update']"></button>
+            <button pButton pRipple icon="pi pi-trash" type="button" class="p-button-rounded p-button-danger" (click)="supprimer(org)"></button>
+          </td>
+      </tr>
+  </ng-template>
+  <ng-template pTemplate="summary">
+      <div class="p-d-flex p-ai-center p-jc-between">
+          Au total, il y a  {{organes ? organes.length : 0 }} organes.
+      </div>
+  </ng-template>
+</p-table>

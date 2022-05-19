@@ -1,0 +1,26 @@
+<p-table [columns]="selectedColumns" [value]="avis" [paginator]="true" [rows]="10">
+  <ng-template pTemplate="caption">
+      <p-multiSelect [options]="cols" [(ngModel)]="selectedColumns" optionLabel="header"
+          selectedItemsLabel="{0} colonnes séléctionnées" [style]="{minWidth: '200px'}" placeholder="Choose Columns"></p-multiSelect>
+  </ng-template>
+  <ng-template pTemplate="header" let-columns>
+      <tr>
+        <th>#</th>
+        <th> Prénom et Nom</th>
+        <th> Quartier </th>
+        <th *ngFor="let col of columns">
+          {{col.header}}
+      </th>
+      </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-avi let-columns="columns">
+      <tr>
+        <td><img class="w-25" src="{{transform(avi.user.photo)}}" alt=""></td>
+        <td> {{avi.user.prenom}} {{avi.user.nom}}</td>
+        <td> {{avi.quartier.nomQuartier}} </td>
+        <td *ngFor="let col of columns">
+          {{avi[col.field]}}
+      </td>
+      </tr>
+  </ng-template>
+</p-table>

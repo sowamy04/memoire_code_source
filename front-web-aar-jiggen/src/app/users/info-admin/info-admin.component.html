@@ -1,0 +1,65 @@
+<div class="ml-5 contenu">
+  <h2 class="texte"> Informations Personnelles </h2>
+  <form class="row" name="userForm" [formGroup]="userForm" (ngSubmit)="modifierUser()">
+    <div class="row">
+      <div class="col-md-3 float-left entete justify-content-center">
+        <div class="login100-pic row" data-tilt>
+          <img class="image w-75" src="{{transform(data.photo)}}" alt="IMG">
+        </div>
+
+        <div class="row">
+          <button class="mt-3 p-ml-4" type="button" mat-raised-button (click)="fileInput.click()">Changer ma photo de profil</button>
+          <input hidden (change)="uploadFile($event)" #fileInput type="file" id="photo" name="photo">
+        </div>
+      </div>
+
+      <div class="col-md-7 droiteform">
+        <mat-form-field class="example-full-width">
+          <mat-label>Prénom</mat-label>
+          <input matInput type="text" formControlName="prenom" [(ngModel)]="data.prenom" required>
+          <mat-error> Le prénom est <strong> requis</strong></mat-error>
+          <mat-icon matSuffix>account_box</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Nom</mat-label>
+          <input matInput type="text" formControlName="nom" [(ngModel)]="data.nom" required>
+          <mat-icon matSuffix>account_box</mat-icon>
+          <mat-error> Le nom est <strong> requis</strong></mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width p-mt-3">
+          <mat-label>Email</mat-label>
+          <input type="email" matInput formControlName="email" [(ngModel)]="data.email" readonly placeholder="aarjiggen@example.com">
+          <mat-error *ngIf="email.hasError('email') && !email.hasError('required')">
+            Svp entrer un email valide
+          </mat-error>
+          <mat-error> L'email est <strong> requis</strong></mat-error>
+          <mat-icon matSuffix>alternate_email</mat-icon>
+        </mat-form-field>
+
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Telephone</mat-label>
+          <span matPrefix>+221 &nbsp;</span>
+          <input type="tel" matInput placeholder="70-555-12-34" pattern="^7[05678][0-9]{7}" formControlName="telephone" readonly [(ngModel)]="data.telephone"  required>
+          <mat-icon matSuffix>call</mat-icon>
+          <mat-error> Le téléphone est <strong> requis ou est incorrect</strong></mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" hidden>
+          <mat-label>Entrer votre mot de passe</mat-label>
+          <input matInput [type]="hide ? 'password' : 'text'"  type="password" formControlName="password" required [readonly]="readonly" [(ngModel)]="data.prenom">hidden
+          <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="example-button-row">
+      <button mat-raised-button type="button" (click)="retour()" color="warn" class="col-md-3 gauche" type="reset">Annuler</button>
+      <button mat-raised-button type="submit" color="primary" class="col-md-3 droite">Modifier</button>
+    </div>
+  </form>
+</div>

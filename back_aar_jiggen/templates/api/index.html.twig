@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ApiController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    <h1> Bienvenue dans le site web Aar jiggen gni </h1>
+    <p> Vous pouvez allez sur le site pour accéder à votre espace grâce à vos informations ci-dessous </p>
+    <p> Numéro de téléphone: <strong> {{ telephone }} </strong> </p>
+    <p> Mot de passe: <strong> {{ password }} </strong> </p>
+    <p> http://localhost:4200 </p>
+    {# <h1>Hello {{ controller_name }}! </p>
+
+    This friendly message is coming from:
+    <ul>
+        <li>Your controller at <code><a href="{{ '/home/amy/memoire_master/back_aar_jiggen/src/Controller/ApiController.php'|file_link(0) }}">src/Controller/ApiController.php</a></code></li>
+        <li>Your template at <code><a href="{{ '/home/amy/memoire_master/back_aar_jiggen/templates/api/index.html.twig'|file_link(0) }}">templates/api/index.html.twig</a></code></li>
+    </ul> #}
+</div>
+{% endblock %}

@@ -1,0 +1,53 @@
+<p-toast></p-toast>
+<div class="card">
+  <p-toolbar styleClass="p-mb-4">
+    <ng-template pTemplate="left">
+      <button pButton pRipple label="Donner un avis" icon="pi pi-plus" class="p-button-primary p-mr-2" routerLink="add-avis"></button>
+    </ng-template>
+  </p-toolbar>
+
+  <div>
+    <router-outlet> </router-outlet>
+  </div>
+
+<p-table [columns]="selectedColumns" [value]="avis" [paginator]="true" [rows]="10">
+  <ng-template pTemplate="caption">
+      <p-multiSelect [options]="cols" [(ngModel)]="selectedColumns" optionLabel="header"
+          selectedItemsLabel="{0} colonne(s) selectionné(e)s" [style]="{minWidth: '200px'}" placeholder="Choisir colonne"></p-multiSelect>
+  </ng-template>
+  <ng-template pTemplate="header" let-columns>
+      <tr>
+        <th>#</th>
+        <!-- <th field="user">Utilisateur</th>
+        <th field="quartier">Quartier</th>
+        <th field="vol">Vol</th>
+        <th field="viol">Viol</th>
+        <th field="agression">Agression</th>
+        <th field="eclairage"> Eclairage publique </th>
+        <th field="transport"> Transport </th>
+        <th field="description"> Description</th>
+        <th field="qualite"> Qualité route </th> -->
+        <th *ngFor="let col of columns">
+          {{col.header}}
+      </th>
+      </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-avi let-columns="columns">
+      <tr>
+        <td>{{avi.id}}</td>
+        <!-- <td> {{avi.user}}</td>
+        <td>{{avi.quartier}}</td>
+        <td> {{avi.vol}} </td>
+        <td>{{avi.viol}}</td>
+        <td> {{avi.agression}} </td>
+        <td> {{avi.eclairage}} </td>
+        <td> {{avi.transport}} </td>
+        <td> {{avi.description}} </td>
+        <td> {{avi.qualiteRoute}} </td> -->
+        <td *ngFor="let col of columns">
+          {{avi[col.field]}}
+      </td>
+      </tr>
+  </ng-template>
+</p-table>
+</div>

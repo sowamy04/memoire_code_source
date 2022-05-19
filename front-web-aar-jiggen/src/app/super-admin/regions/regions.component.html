@@ -1,0 +1,83 @@
+<p-toast></p-toast>
+<div class="card">
+  <p-toolbar styleClass="p-mb-4">
+    <ng-template pTemplate="left">
+      <button pButton pRipple label="Nouvelle Région" icon="pi pi-plus" class="p-button-success p-mr-2" routerLink="add-region"></button>
+      <button pButton pRipple label="Supprimer" icon="pi pi-trash" class="p-button-danger" (click)="deleteSelectedRegions()" [disabled]="!selectedProducts || !selectedProducts.length"></button>
+    </ng-template>
+  </p-toolbar>
+
+  <div>
+    <router-outlet> </router-outlet>
+  </div>
+
+    <p-table #dt [value]="regions" [rows]="5" [paginator]="true" [globalFilterFields]="['nomRegion']"
+        [(selection)]="selectedProducts" [rowHover]="true" dataKey="id"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
+        <ng-template pTemplate="caption">
+            <div class="p-d-flex p-ai-center p-jc-between">
+                <h5 class="p-m-0">Gestion des régions</h5>
+                <span class="p-input-icon-left">
+                    <i class="pi pi-search"></i>
+                    <input pInputText type="text" (input)="applyFilterGlobal($event, 'contains')" placeholder="Rechercher..."/>
+                </span>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="width: 3rem">
+                    <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                </th>
+                <th> # </th>
+                <th pSortableColumn="nomRegion"> Région <p-sortIcon field="nomRegion"></p-sortIcon></th>
+                <th>Action</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-region let-expanded="expanded">
+            <tr *ngIf="region.statut == true">
+                <td>
+                    <p-tableCheckbox [value]="region"></p-tableCheckbox>
+                </td>
+                <td>{{region.id}}</td>
+                <td>{{region.nomRegion}}</td>
+                <td>
+                  <button pButton pRipple [pRowToggler]="region" class="p-button-rounded p-button-primary p-mr-2" [icon]="expanded ? 'pi pi-list' : 'pi pi-list'"></button>
+                  <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" [routerLink]="[region.id+'/update']"></button>
+                  <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger" (click)="supprimer(region)"></button>
+                </td>
+            </tr>
+          </ng-template>
+
+              <ng-template pTemplate="rowexpansion" let-region>
+                <tr>
+                  <td colspan="7">
+                    <div class="p-p-3">
+                      <p-table class="" [value]="region.departements" datakey="id">
+                        <ng-template pTemplate="header">
+                          <tr>
+                            <th>#</th>
+                            <th>Département</th>
+                          </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-dept>
+                          <tr>
+                            <td>{{dept.id}}</td>
+                            <td>{{dept.nomDept}}</td>
+                          </tr>
+                        </ng-template>
+                      </p-table>
+                    </div>
+                  </td>
+                </tr>
+              </ng-template>
+
+
+        <ng-template pTemplate="summary">
+            <div class="p-d-flex p-ai-center p-jc-between">
+              Au total il y a {{regions ? regions.length : 0 }} régions.
+            </div>
+        </ng-template>
+    </p-table>
+</div>
+
+<p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>

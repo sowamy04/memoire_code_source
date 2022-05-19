@@ -1,0 +1,32 @@
+<div class="limiter">
+  <div class="container-login100">
+    <div class="wrap-login100">
+      <div class="login100-pic js-tilt" data-tilt>
+        <img class="image" src="assets/images/identification.png" alt="IMG">
+        <br> <br>
+        <div> <p class="texte text-black"> Aar Sunu Jiggen Gni, Moy Aar Sunu Askan</p></div>
+      </div>
+      <div class="login100-form">
+        <h1 class="mb-3"> AUTHENTIFICATION</h1>
+        <form name="loginForm" [formGroup]="loginForm" (ngSubmit)="onLogin()" fxLayoutAlign="stretch" fxLayout="column">
+          <mat-form-field class="example-full-width w-100" layout-align="center center">
+            <mat-label>Numéro téléphone</mat-label>
+            <input type="text" matInput  placeholder="Entrer votre numéro de téléphone"  formControlName="username" required>
+            <mat-error> Le nom d'utilisateur est <strong> requis</strong></mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width w-100">
+            <mat-label>Mot de passe</mat-label>
+            <input type="password" matInput  placeholder="Entrer votre mot de passe" formControlName="password" required>
+            <mat-error > Le mot de passe est <strong> requis</strong></mat-error>
+          </mat-form-field>
+          <br>
+          <button type="submit" mat-flat-button class="w-50 bold mb-5 mt-3" style="background-color: blue; color:white">Se connecter</button>
+          <p>
+            <a routerLink="/inscription"> Vous n'avez pas encore de compte? <strong> S'INSCRIRE</strong></a>
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

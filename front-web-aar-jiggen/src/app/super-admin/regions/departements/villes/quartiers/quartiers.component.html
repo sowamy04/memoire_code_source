@@ -1,0 +1,57 @@
+<p-toast></p-toast>
+<div class="card">
+  <p-toolbar styleClass="p-mb-4">
+    <ng-template pTemplate="left">
+      <button pButton pRipple label="Nouveau quartier" icon="pi pi-plus" class="p-button-success p-mr-2" routerLink="add-quartier"></button>
+      <button pButton pRipple label="Supprimer" icon="pi pi-trash" class="p-button-danger" (click)="deleteSelectedQuartiers()" [disabled]="!selectedProducts || !selectedProducts.length"></button>
+    </ng-template>
+  </p-toolbar>
+
+  <div>
+    <router-outlet> </router-outlet>
+  </div>
+
+    <p-table #dt [value]="quartiers" [rows]="5" [paginator]="true" [globalFilterFields]="['nomQuartier','nomVille']" [filterDelay]="0"
+        [(selection)]="selectedProducts" [rowHover]="true" dataKey="id"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
+        <ng-template pTemplate="caption">
+            <div class="p-d-flex p-ai-center p-jc-between">
+                <h5 class="p-m-0">Quartiers</h5>
+                <span class="p-input-icon-left">
+                    <i class="pi pi-search"></i>
+                    <input pInputText type="text" (input)="applyFilterGlobal($event, 'contains')" placeholder="Rechercher..."/>
+                </span>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="width: 3rem">
+                    <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                </th>
+                <th> # </th>
+                <th pSortableColumn="nomVille"> Quartier<p-sortIcon field="nomDept"></p-sortIcon></th>
+                <th pSortableColumn="nomDept">Ville <p-sortIcon field="nomDept"></p-sortIcon></th>
+                <th>Action</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-quartier>
+            <tr *ngIf="quartier.statut == true">
+                <td>
+                    <p-tableCheckbox [value]="quartier"></p-tableCheckbox>
+                </td>
+                <td>{{quartier.id}}</td>
+                <td>{{quartier.nomQuartier}}</td>
+                <td> {{ quartier.ville.nomVille }}</td>
+                <td>
+                  <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" [routerLink]="[quartier.id+'/update']"></button>
+                  <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger" (click)="deleteQuartier(quartier)"></button>
+                </td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="summary">
+            <div class="p-d-flex p-ai-center p-jc-between">
+              Au total il y a {{quartiers ? quartiers.length : 0 }} quartiers.
+            </div>
+        </ng-template>
+    </p-table>
+</div>

@@ -1,0 +1,21 @@
+<form name="quartierForm" [formGroup]="quartierForm" (ngSubmit)="modifierQuartier()" fxLayoutAlign="stretch" fxLayout="column">
+  <mat-form-field class="example-full-width w-25 p-ml-5 p-mr-5" layout-align="center center">
+    <mat-label>Nom du Quartier</mat-label>
+    <input type="text" matInput  placeholder="Entrer le nom du Quartier"  formControlName="nomQuartier" [(ngModel)]="quartierVal" required>
+    <mat-error> Le nom du quartier est <strong> requis</strong></mat-error>
+  </mat-form-field>
+  <mat-form-field class="w-25 example-full-width">
+    <mat-label>Choisir la ville correspondante</mat-label>
+    <input type="text" matInput formControlName="ville" [(ngModel)]="villeVal" [matAutocomplete]="auto" required>
+    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+      <mat-option *ngFor="let option of filteredOptions" [value]="option">
+        {{option.nomVille}}
+      </mat-option>
+    </mat-autocomplete>
+    <mat-error> Le choix d'une ville est <strong> requis</strong></mat-error>
+  </mat-form-field>
+  <div>
+    <button mat-flat-button class="bouton p-ml-5 mt-3" type="submit" style="background-color: blue; color:white">Modifier</button>
+    <button mat-flat-button class="bouton p-ml-5 mt-3" type="button" (click)="retour()" style="background-color: red; color:white">Annuler</button>
+  </div>
+</form>

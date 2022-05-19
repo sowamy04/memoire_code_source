@@ -1,0 +1,33 @@
+<div>
+  <div class="bs-example">
+    <nav class="navbar navbar-expand-md navbar-light bgColor">
+        <a class="navbar-brand">
+            <img routerLink="regions" src="assets/images/logo.png" height="75" alt="CoolBrand">
+        </a>
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav">
+                <a routerLink="meritoires" class="btn nav-item nav-link">Personne de confiance</a>
+                <a routerLink="alertes" class="btn nav-item nav-link">Alertes</a>
+                <a routerLink="itineraires" class="btn nav-item nav-link">Itinéraires</a>
+                <a routerLink="avis" class="btn nav-item nav-link">Avis</a>
+                <a routerLink="stats" class="btn nav-item nav-link">Statistiques</a>
+              </div>
+            <div class="gauche">
+              <img class="img-circle img-rounded float-left" src="{{transform(data.photo)}}?" style="border-radius: 50%;" height="50" alt="CoolBrand">
+              <a routerLink="infos" class="btn nav-item nav-link" role="button" id="dropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              {{data.prenom}}
+              </a>
+            </div>
+            <a class="btn nav-item nav-link" (click)='deconnexion()'>Se déconnecter</a>
+        </div>
+    </nav>
+  </div>
+
+  <div class="router">
+    <router-outlet> </router-outlet>
+  </div>
+
+  </div>

@@ -1,0 +1,61 @@
+<div class="ml-5 contenu p-shadow-4">
+  <h2 class="texte"> Formulaire d'Ajout d'Un Nouveau Admin </h2>
+  <form class="row" name="adminForm" [formGroup]="adminForm" (ngSubmit)="ajouterAdmin()">
+    <div class="col-md-3 entete justify-content-center">
+      <div class="login100-pic" data-tilt>
+        <img class="image w-25" src="assets/images/identification.png" alt="IMG">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <mat-form-field class="example-full-width">
+          <mat-label>Prénom</mat-label>
+          <input matInput type="text" formControlName="prenom" required>
+          <mat-error> Le prénom est <strong> requis</strong></mat-error>
+          <mat-icon matSuffix>account_box</mat-icon>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+          <mat-label>Nom</mat-label>
+          <input matInput type="text" formControlName="nom" required>
+          <mat-icon matSuffix>account_box</mat-icon>
+          <mat-error> Le nom est <strong> requis</strong></mat-error>
+      </mat-form-field> <br>
+      <mat-form-field class="example-full-width p-mt-3">
+          <mat-label>Email</mat-label>
+          <input type="email" matInput formControlName="email" placeholder="aarjiggen@example.com">
+          <mat-error *ngIf="email.hasError('email') && !email.hasError('required')">
+            Svp entrer un email valide
+          </mat-error>
+          <mat-error> L'email est <strong> requis</strong></mat-error>
+          <mat-icon matSuffix>alternate_email</mat-icon>
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-6">
+        <mat-form-field class="example-full-width">
+          <mat-label>Telephone</mat-label>
+          <span matPrefix>+221 &nbsp;</span>
+          <input type="tel" matInput placeholder="70-555-12-34" pattern="^7[05678][0-9]{7}" formControlName="telephone" required>
+          <mat-icon matSuffix>call</mat-icon>
+          <mat-error> Le téléphone est <strong> requis ou est incorrect</strong></mat-error>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <mat-label>Entrer votre mot de passe</mat-label>
+          <input matInput [type]="hide ? 'password' : 'text'"  type="password" formControlName="password" required>
+          <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+        <button class="mt-3 p-ml-4" type="button" mat-raised-button (click)="fileInput.click()">Choisir une photo de profil</button>
+        <input hidden (change)="uploadFile($event)" #fileInput type="file" id="photo" name="photo">
+      </div>
+    </div>
+
+
+    <div class="example-button-row">
+      <button mat-raised-button color="warn" class="col-md-3 gauche" type="reset">Annuler</button>
+      <button mat-raised-button color="primary" class="col-md-3 droite">Ajouter</button>
+    </div>
+  </form>
+</div>

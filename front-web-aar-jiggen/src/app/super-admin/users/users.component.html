@@ -1,0 +1,46 @@
+<div class="card">
+  <h5 class="texte">Liste utilisateurs</h5>
+  <p-table #dt [value]="users" [paginator]="true" [rows]="5" [globalFilterFields]="['nom', 'prenom', 'email', 'telephone', 'adresse']"
+  [(selection)]="selectedUsers" [rowHover]="true" dataKey="id" [showCurrentPageReport]="true">
+    <ng-template pTemplate="caption">
+      <div class="p-d-flex p-ai-center p-jc-between">
+        <h5 class="p-m-0">Gestion des utilisateurs</h5>
+          <span class="p-input-icon-left">
+              <i class="pi pi-search"></i>
+              <input pInputText type="text" (input)="applyFilterGlobal($event, 'contains')" placeholder="Rechercher..."/>
+          </span>
+      </div>
+  </ng-template>
+    <ng-template pTemplate="header">
+      <tr class="entete">
+        <th> # </th>
+        <th class="entete" pSortableColumn="prenom">Prénom <p-sortIcon field="prenom"></p-sortIcon></th>
+        <th pSortableColumn="nom">Nom <p-sortIcon field="nom"></p-sortIcon></th>
+        <th> Genre </th>
+        <th pSortableColumn="email">Email <p-sortIcon field="email"></p-sortIcon></th>
+        <th pSortableColumn="telephone">Téléphone <p-sortIcon field="telephone"></p-sortIcon></th>
+        <th pSortableColumn="adresse">Adresse <p-sortIcon field="adresse"></p-sortIcon></th>
+        <th> Action </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-user>
+      <tr *ngIf='user.statut == true'>
+        <td> <img class=" w-25" src="{{ transform(user.photo) }}" alt="">  </td>
+        <td> {{user.prenom}} </td>
+        <td> {{user.nom}} </td>
+        <td> {{user.sexe}} </td>
+        <td> {{user.email}} </td>
+        <td> {{user.telephone}} </td>
+        <td> {{user.adresse}} </td>
+        <td>
+          <button pButton pRipple type="button" icon="pi pi-list" class="p-button-rounded p-button-primary p-button-text" [routerLink]="[user.id+'/detail']"></button>
+          <button (click)="supprimer(user)" pButton pRipple type="button" icon="pi pi-trash" class="p-button-rounded p-button-danger p-button-text"></button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+
+<div class="p-mt-6 p-ml-6 p-mr-6">
+  <router-outlet> </router-outlet>
+</div>

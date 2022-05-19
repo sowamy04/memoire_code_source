@@ -1,0 +1,47 @@
+<p-table [value]="statistiques" [paginator]="true" [rows]="5">
+  <ng-template pTemplate="caption">
+      <div class="p-d-flex p-ai-center p-jc-between">
+          Statistiques
+          <p-button icon="pi pi-refresh"></p-button>
+      </div>
+  </ng-template>
+  <ng-template pTemplate="header">
+      <tr>
+          <th> # </th>
+          <th> Quartiers </th>
+          <th> Eclairage </th>
+          <th> Vol </th>
+          <th> Viol </th>
+          <th> Agression </th>
+          <th> Transport </th>
+          <th> Niveau d'insécurité </th>
+          <th> Action </th>
+      </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-stat>
+      <tr>
+          <td> {{stat.id}} </td>
+          <td> {{stat.nomQuartier}} </td>
+          <td> {{stat.eclairagePublique}} </td>
+          <td> {{stat.vol}} </td>
+          <td> {{stat.viol}} </td>
+          <td> {{stat.agression}} </td>
+          <td> {{stat.transport}} </td>
+          <td> {{stat.niveau}} </td>
+          <td>
+            <button pButton pRipple icon="pi pi-chart-bar" class="p-button-rounded p-button-primary p-mr-2" [routerLink]="[stat.id+'/chart']"></button>
+            <button pButton pRipple icon="pi pi-exclamation-triangle" class="p-button-rounded p-button-danger p-mr-2"></button>
+          </td>
+      </tr>
+  </ng-template>
+  <ng-template pTemplate="summary">
+      <div class="p-d-flex p-ai-center p-jc-between">
+          Au total, il ya  {{statistiques ? statistiques.length : 0 }} statistiques. Un pour chaque quartier en fonction des avis!
+      </div>
+  </ng-template>
+</p-table>
+
+
+<div class=" ml-5 mt-5 mr-5">
+  <router-outlet> </router-outlet>
+</div>

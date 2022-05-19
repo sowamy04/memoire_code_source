@@ -1,0 +1,31 @@
+<form name="orgForm" [formGroup]="orgForm" (ngSubmit)="modifierOrgane()" fxLayoutAlign="stretch" fxLayout="column">
+  <mat-form-field class="example-full-width w-25 p-ml-5 p-mr-5" layout-align="center center">
+    <mat-label>Nom de l'organe</mat-label>
+    <input type="text" matInput  placeholder="Entrer le nom de la ville"  formControlName="nomOrgane" [(ngModel)]="orgVal" required>
+    <mat-error> Le nom de l'organe est <strong> requis</strong></mat-error>
+  </mat-form-field>
+  <mat-form-field class="example-full-width w-25 p-ml-5 p-mr-5" layout-align="center center">
+    <mat-label>Téléphone</mat-label>
+    <input type="text" matInput  placeholder="Entrer le numéro de téléphone"  formControlName="telephone" [(ngModel)]="telVal" required>
+    <mat-error> Le numéro de téléphone est <strong> requis</strong></mat-error>
+  </mat-form-field> <br>
+  <mat-form-field class="example-full-width w-25 p-ml-5 p-mr-5" layout-align="center center">
+    <mat-label>Email</mat-label>
+    <input type="text" matInput  placeholder="Donner l'email"  formControlName="email" [(ngModel)]="emailVal" required>
+    <mat-error> L'email est <strong> requis</strong></mat-error>
+  </mat-form-field>
+  <mat-form-field class="w-25 p-ml-5 example-full-width">
+    <mat-label>Choisir la ville correspondante </mat-label>
+    <input type="text" matInput formControlName="ville" [(ngModel)]="villeVal" [matAutocomplete]="auto" required>
+    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+      <mat-option *ngFor="let option of filteredOptions" [value]="option">
+        {{option.nomVille}} -- {{option.departement.nomDept}}
+      </mat-option>
+    </mat-autocomplete>
+    <mat-error> Le choix de la ville est <strong> requis</strong></mat-error>
+  </mat-form-field>
+  <div>
+    <button mat-flat-button class="bouton p-ml-5 mt-3" type="submit" style="background-color: blue; color:white">Modifier</button>
+  <button mat-flat-button class="bouton p-ml-5 mt-3" type="button" (click)="retour()" style="background-color: red; color:white">Annuler</button>
+  </div>
+</form>

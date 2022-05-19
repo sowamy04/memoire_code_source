@@ -1,0 +1,114 @@
+<p-toast></p-toast>
+<div class="card">
+  <p-toolbar styleClass="p-mb-4">
+    <ng-template pTemplate="left">
+      <button pButton pRipple label="Nouvelle ville" icon="pi pi-plus" class="p-button-success p-mr-2" routerLink="add-ville"></button>
+      <button pButton pRipple label="Supprimer" icon="pi pi-trash" class="p-button-danger" (click)="deleteSelectedVilles()" [disabled]="!selectedProducts || !selectedProducts.length"></button>
+    </ng-template>
+  </p-toolbar>
+
+  <div>
+    <router-outlet> </router-outlet>
+  </div>
+
+    <p-table #dt [value]="villes" [rows]="5" [paginator]="true" [globalFilterFields]="['nomVille','nomDept']" [filterDelay]="0"
+        [(selection)]="selectedProducts" [rowHover]="true" dataKey="id"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
+        <ng-template pTemplate="caption">
+            <div class="p-d-flex p-ai-center p-jc-between">
+                <h5 class="p-m-0">Villes</h5>
+                <span class="p-input-icon-left">
+                    <i class="pi pi-search"></i>
+                    <input pInputText type="text" (input)="applyFilterGlobal($event, 'contains')" placeholder="Rechercher..."/>
+                </span>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="width: 3rem">
+                    <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                </th>
+                <th> # </th>
+                <th pSortableColumn="nomVille">Ville <p-sortIcon field="nomDept"></p-sortIcon></th>
+                <th pSortableColumn="nomDept">Département <p-sortIcon field="nomDept"></p-sortIcon></th>
+                <th>Action</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-expanded="expanded" let-ville>
+            <tr *ngIf="ville.statut == true">
+                <td>
+                    <p-tableCheckbox [value]="ville"></p-tableCheckbox>
+                </td>
+                <td>{{ville.id}}</td>
+                <td>{{ville.nomVille}}</td>
+                <td> {{ ville.departement.nomDept }}</td>
+                <td>
+                  <button pButton pRipple [pRowToggler]="ville" class="p-button-rounded p-button-primary p-mr-2" [icon]="expanded ? 'pi pi-list' : 'pi pi-list'"></button>
+                  <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" [routerLink]="[ville.id+'/update']"></button>
+                  <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger" (click)="deleteVille(ville)"></button>
+                </td>
+            </tr>
+        </ng-template>
+
+        <ng-template pTemplate="rowexpansion" let-ville>
+          <tr>
+            <td colspan="7">
+              <div class="p-p-3">
+                <p-table class="" [value]="ville.quartiers" [rows]="5" [paginator]="true" datakey="id">
+                  <ng-template pTemplate="header">
+                    <tr>
+                      <th>#</th>
+                      <th>Quartiers</th>
+                    </tr>
+                  </ng-template>
+                  <ng-template pTemplate="body" let-quartier>
+                    <tr>
+                      <td>{{quartier.id}}</td>
+                      <td>{{quartier.nomQuartier}}</td>
+                    </tr>
+                  </ng-template>
+                  <ng-template pTemplate="emptymessage">
+                    <tr>
+                        <td colspan="6">Il n'y a pas encore de quartiers enregistrés pour cette ville. </td>
+                    </tr>
+                </ng-template>
+                </p-table>
+                <br> <br>
+                <p-table class="" [value]="ville.organes" [rows]="5" [paginator]="true" datakey="id">
+                  <ng-template pTemplate="header">
+                    <tr>
+                      <th>#</th>
+                      <th>Nom organe </th>
+                      <th> Téléphone </th>
+                      <th> Email </th>
+                    </tr>
+                  </ng-template>
+                  <ng-template pTemplate="body" let-org>
+                    <tr>
+                      <td>{{org.id}}</td>
+                      <td>{{org.nomOrgane}}</td>
+                      <td> {{org.telephone}} </td>
+                      <td> {{org.email}} </td>
+                    </tr>
+                  </ng-template>
+                  <ng-template pTemplate="emptymessage">
+                    <tr>
+                        <td colspan="6">Il n'y a pas encore d'organes pour cette ville. </td>
+                    </tr>
+                </ng-template>
+                </p-table>
+
+              </div>
+            </td>
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate="summary">
+            <div class="p-d-flex p-ai-center p-jc-between">
+              Au total il y a {{villes ? villes.length : 0 }} villes.
+            </div>
+        </ng-template>
+    </p-table>
+</div>
+
+<p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>

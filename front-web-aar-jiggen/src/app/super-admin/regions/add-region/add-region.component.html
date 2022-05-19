@@ -1,0 +1,9 @@
+<form name="loginForm" [formGroup]="regionForm" (ngSubmit)="ajouterRegion()" fxLayoutAlign="stretch" fxLayout="column">
+  <mat-form-field class="example-full-width w-25 p-ml-5 p-mr-5" layout-align="center center">
+    <mat-label>Nom de la région</mat-label>
+    <input type="text" matInput  placeholder="Entrer votre numéro de téléphone"  formControlName="nomRegion" required>
+    <mat-error> Le nom de la région est <strong> requis</strong></mat-error>
+  </mat-form-field>
+  <button mat-flat-button class="bouton p-ml-5 mt-3" type="submit" style="background-color: blue; color:white">Ajouter</button>
+  <button mat-flat-button class="bouton p-ml-5 mt-3" type="button" (click)="retour()" style="background-color: red; color:white">Annuler</button>
+</form>

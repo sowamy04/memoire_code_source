@@ -1,0 +1,21 @@
+<form name="villeForm" [formGroup]="villeForm" (ngSubmit)="updateVille()" fxLayoutAlign="stretch" fxLayout="column">
+  <mat-form-field class="example-full-width w-25 p-ml-5 p-mr-5" layout-align="center center">
+    <mat-label>Nom de la ville</mat-label>
+    <input type="text" matInput  placeholder="Entrer le nom de la ville"  formControlName="nomVille" required [(ngModel)]="villeVal">
+    <mat-error> Le nom de la ville est <strong> requis</strong></mat-error>
+  </mat-form-field>
+  <mat-form-field class="w-25 example-full-width">
+    <mat-label>Choisir le département correspondant</mat-label>
+    <input type="text" matInput formControlName="dept" [(ngModel)]="deptVal" [matAutocomplete]="auto" required>
+    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+      <mat-option *ngFor="let option of filteredOptions" [value]="option">
+        {{option.nomDept}}
+      </mat-option>
+    </mat-autocomplete>
+    <mat-error> Le choix du département est <strong> requis</strong></mat-error>
+  </mat-form-field>
+  <div>
+    <button mat-flat-button class="bouton p-ml-5 mt-3" type="submit" style="background-color: blue; color:white">Modifier</button>
+  <button mat-flat-button class="bouton p-ml-5 mt-3" type="button" (click)="retour()" style="background-color: red; color:white">Annuler</button>
+  </div>
+</form>

@@ -1,0 +1,61 @@
+<form name="avisForm" [formGroup]="avisForm" (ngSubmit)="ajouterAvis()" fxLayoutAlign="stretch" fxLayout="column">
+  <mat-form-field class="w-25 p-ml-5 p-mr-5 example-full-width">
+    <mat-label>Choisir le quartier </mat-label>
+    <input type="text" matInput formControlName="quartier" [matAutocomplete]="auto" required>
+    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+      <mat-option *ngFor="let option of filteredOptions" [value]="option">
+        {{option.nomVille}}
+      </mat-option>
+    </mat-autocomplete>
+    <mat-error> Le choix d'un quartier est <strong> requis</strong></mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width w-25 p-ml-5 p-mr-5" layout-align="center center">
+    <mat-label>Eclairage publique</mat-label>
+    <input type="text" matInput  placeholder="Une note entre 1 sur 5 sur l'éclairage publique"  formControlName="eclairage" required>
+    <mat-error> La note sur l'éclairage est <strong> requis</strong></mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width w-25 p-ml-5 p-mr-5" layout-align="center center">
+    <mat-label>Vol</mat-label>
+    <input type="text" matInput  placeholder="Entrer la note du vol"  formControlName="vol" required>
+    <mat-error> La note pour le vol est <strong> requise </strong></mat-error>
+  </mat-form-field>
+
+  <br>
+  <mat-form-field class="example-full-width w-25 p-ml-5 p-mr-5" layout-align="center center">
+    <mat-label>Viol</mat-label>
+    <input type="text" matInput  placeholder="Entrer la note du viol"  formControlName="viol" required>
+    <mat-error> La note pour le viol est <strong> requise </strong></mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width w-25 p-ml-5 p-mr-5" layout-align="center center">
+    <mat-label>Agression</mat-label>
+    <input type="text" matInput  placeholder="Entrer la note de l'agression"  formControlName="agression" required>
+    <mat-error> La note de l'agression est <strong> requise </strong></mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width w-25 p-ml-5 p-mr-5" layout-align="center center">
+    <mat-label>Transport</mat-label>
+    <input type="text" matInput  placeholder="Entrer la note pour le transport"  formControlName="transport" required>
+    <mat-error> La note pour le transport est <strong> requise </strong></mat-error>
+  </mat-form-field>
+  <br>
+
+  <mat-form-field class="example-full-width w-25 p-ml-5 p-mr-5" layout-align="center center">
+    <mat-label>Qualité route</mat-label>
+    <input type="text" matInput  placeholder="Entrer la note pour la qualité de la route"  formControlName="qualite" required>
+    <mat-error> La note pour la qualité de la route est <strong> requise </strong></mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width taille p-ml-5 p-mr-5" layout-align="center center">
+    <mat-label>Description</mat-label>
+    <textarea type="text" matInput  placeholder="Donner la description du quartier"  formControlName="description" required> </textarea>
+    <mat-error> La description est <strong> requise </strong></mat-error>
+  </mat-form-field>
+
+  <div class="btn">
+    <button mat-flat-button class="bouton p-ml-5 mt-3" type="submit" style="background-color: blue; color:white">Ajouter</button>
+    <button mat-flat-button class="bouton p-ml-5 mt-3" type="button" (click)="retour()" style="background-color: red; color:white">Annuler</button>
+  </div>
+</form>

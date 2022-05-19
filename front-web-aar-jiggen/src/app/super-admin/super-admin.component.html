@@ -1,0 +1,103 @@
+<mat-toolbar class="mat-elevation-z8">
+  <button mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
+    <mat-icon *ngIf="!sidenav.opened">
+        menu
+    </mat-icon>
+    <mat-icon *ngIf="sidenav.opened">
+        close
+    </mat-icon>
+  </button>
+
+    <img class="logo poslogo mat-elevation-z8" src="assets/images/logo.png" />
+    <p class="slogan"> Aar Sunu Jiggen Gni, Mooy Aar Sunu Askan ! </p>
+    <button mat-raised-button class="bouton bout" routerLink="infos"><mat-icon> person </mat-icon> Informations personnelles</button>
+    <button mat-raised-button class="bouton" (click)="deconnexion()"> <mat-icon> home </mat-icon> Déconnexion</button>
+
+</mat-toolbar>
+
+<mat-sidenav-container>
+  <mat-sidenav #sidenav="matSidenav">
+    <img class="avatar mat-elevation-z8" src="{{transform(data?.photo)}}"/>
+      <h4 class="name">{{data?.prenom}} {{data?.nom}}</h4>
+      <p class="designation">Super Admin</p>
+      <mat-divider></mat-divider>
+      <button mat-button class="menu-button" routerLink="profils">
+        <mat-icon>home</mat-icon>
+        <span>Accueil</span>
+      </button>
+      <button mat-button class="menu-button" routerLink="add-admin">
+        <mat-icon>add</mat-icon>
+        <span>Nouveau admin</span>
+      </button>
+      <button mat-button class="menu-button" routerLink="admins">
+        <mat-icon>supervisor_account</mat-icon>
+        <span>Admins</span>
+      </button>
+      <button mat-button class="menu-button" routerLink="users">
+        <mat-icon>supervisor_account</mat-icon>
+        <span>Utilisateurs</span>
+      </button>
+
+      <mat-divider></mat-divider>
+
+      <h3> Zones </h3>
+      <button mat-button class="menu-button" routerLink="regions">
+        <mat-icon>help</mat-icon>
+        <span> Régions </span>
+      </button>
+      <button mat-button class="menu-button" routerLink="depts">
+        <mat-icon>help</mat-icon>
+        <span> Départements </span>
+      </button>
+      <button mat-button class="menu-button" routerLink="villes">
+        <mat-icon>help</mat-icon>
+        <span> Villes </span>
+      </button>
+      <button mat-button class="menu-button" routerLink="quartiers">
+        <mat-icon>help</mat-icon>
+        <span> Quartiers </span>
+      </button>
+
+      <mat-divider></mat-divider>
+
+      <h3> Paramètres </h3>
+      <button mat-button class="menu-button" routerLink="organes">
+        <mat-icon>help</mat-icon>
+        <span> Organes </span>
+      </button>
+      <button mat-button class="menu-button" routerLink="itineraires">
+        <mat-icon>trending_up</mat-icon>
+        <span> Itineraires </span>
+      </button>
+      <button mat-button class="menu-button" routerLink="avis">
+        <mat-icon>help</mat-icon>
+        <span> Avis </span>
+      </button>
+      <button mat-button class="menu-button" routerLink="meritoires">
+        <mat-icon>help</mat-icon>
+        <span> Méritoires </span>
+      </button>
+      <button mat-button class="menu-button" routerLink="stats">
+        <mat-icon>help</mat-icon>
+        <span> Statistiques </span>
+      </button>
+      <button mat-button class="menu-button" routerLink="alertes">
+        <mat-icon>help</mat-icon>
+        <span> Alertes </span>
+      </button>
+
+  </mat-sidenav>
+
+  <mat-sidenav-content class="mat-elevation-z22  conte">
+    <router-outlet> </router-outlet>
+    <!--
+      <div class="content mat-elevation-z8">
+      <div class="white"> </div>
+        <div class="cont">
+          <router-outlet> </router-outlet>
+        </div>
+    </div>
+    -->
+  </mat-sidenav-content>
+
+</mat-sidenav-container>
