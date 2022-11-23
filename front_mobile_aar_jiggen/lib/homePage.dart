@@ -52,7 +52,7 @@ class AccueilScreenState extends State<AccueilScreen> {
       case 1:
         return new ItineraireFragment();
       case 2:
-        return new MeritoireFragment();
+        return new TrackerFragment();
       case 3:
         return new TrackerFragment();
       case 4:

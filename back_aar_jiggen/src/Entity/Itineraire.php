@@ -35,7 +35,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
  * },
  * "add_itineraire" = {
  *    "method": "POST",
- *   "path": "/simple_users/itineraires", 
+ *   "path": "/itineraires", 
  *   "normalization_context"={"groups":"itineraire:read"},
  *   "access_control"="(is_granted('ROLE_USER'))",
  *   "access_control_message"="Vous n'avez pas access à cetteThe Ressource",
@@ -92,6 +92,26 @@ class Itineraire
      * @Groups({"itineraire:read"})
      */
     private $personneConfiances;
+
+    /**
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $latDepart;
+
+    /**
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $longDepart;
+
+    /**
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $latArrivee;
+
+    /**
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $longArrivee;
 
     public function __construct()
     {
@@ -177,6 +197,54 @@ class Itineraire
                 $personneConfiance->setItineraire(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getLatDepart(): ?float
+    {
+        return $this->latDepart;
+    }
+
+    public function setLatDepart(?float $latDepart): self
+    {
+        $this->latDepart = $latDepart;
+
+        return $this;
+    }
+
+    public function getLongDepart(): ?float
+    {
+        return $this->longDepart;
+    }
+
+    public function setLongDepart(?float $longDepart): self
+    {
+        $this->longDepart = $longDepart;
+
+        return $this;
+    }
+
+    public function getLatArrivee(): ?float
+    {
+        return $this->latArrivee;
+    }
+
+    public function setLatArrivee(?float $latArrivee): self
+    {
+        $this->latArrivee = $latArrivee;
+
+        return $this;
+    }
+
+    public function getLongArrivee(): ?float
+    {
+        return $this->longArrivee;
+    }
+
+    public function setLongArrivee(?float $longArrivee): self
+    {
+        $this->longArrivee = $longArrivee;
 
         return $this;
     }

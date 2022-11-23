@@ -37,8 +37,8 @@ dependencies:
   location: ^4.3.0
   google_fonts: ^2.1.0
   permission_handler: ^8.1.6
-  contact_picker: ^0.0.2
-  camera: ^0.9.4+3
+  #contact_picker: ^0.0.2
+  camera: ^0.10.0+1
   video_player: ^2.2.5
   path_provider: ^2.0.5
   path: ^1.6.4

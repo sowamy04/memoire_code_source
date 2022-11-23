@@ -20,7 +20,7 @@
         android:label="Aar Jiggen"
         android:icon="@mipmap/ic_launcher">
         <meta-data android:name="com.google.android.geo.API_KEY"
-               android:value="AIzaSyDN63FEPH4l5Xgvn5JYWXbg_yKV0L7pWys"/>
+               android:value="AIzaSyCqMBwTECMPxz0YPi7Znp_q4ZKtE7ZehuY"/>
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

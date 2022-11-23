@@ -27,6 +27,6 @@ export class AvisService {
   }
 
   ajouterAvis(avis : any){
-    return this.http.post(this.url+'simple_users/avis', avis)
+    return this.http.post(this.url+'avis', avis)
   }
 }

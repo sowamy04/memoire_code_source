@@ -20,7 +20,7 @@ class CoordonneesGeographiquesController extends AbstractController
         
     /**
      * @Route(
-     *  "/api/simple_users/coordonnees_geographiques", 
+     *  "/api/coordonnees_geographiques", 
      *  name="add_coordonnees", 
      *  methods={"POST"},
      *  defaults={

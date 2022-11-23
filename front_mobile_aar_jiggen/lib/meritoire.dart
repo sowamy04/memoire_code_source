@@ -1,4 +1,4 @@
-import 'package:contact_picker/contact_picker.dart';
+/* import 'package:contact_picker/contact_picker.dart';
 import 'package:flutter/material.dart';
 
 class MeritoireFragment extends StatefulWidget {
@@ -60,3 +60,4 @@ class _MeritoireFragmentState extends State<MeritoireFragment> {
     ));
   }
 }
+ */

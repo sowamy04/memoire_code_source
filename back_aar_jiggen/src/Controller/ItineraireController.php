@@ -21,7 +21,7 @@ class ItineraireController extends AbstractController
           
      /**
      * @Route(
-     *  "/api/simple_users/itineraires", 
+     *  "/api/itineraires", 
      *  name="add_itineraire", 
      *  methods={"POST"},
      *  defaults={
@@ -47,6 +47,10 @@ class ItineraireController extends AbstractController
             ->setUser($user)
             ->setDepart($depart)
             ->setArrivee($arrivee)
+            ->setLatDepart($requete->latDepart)
+            ->setLongDepart($requete->longDepart)
+            ->setLatArrivee($requete->latArrivee)
+            ->setLongArrivee($requete->longArrivee)
             ->setDate($date)
             ;
         

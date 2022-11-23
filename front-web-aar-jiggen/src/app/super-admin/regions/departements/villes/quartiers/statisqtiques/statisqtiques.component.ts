@@ -32,8 +32,8 @@ export class StatisqtiquesComponent implements OnInit {
   showstats(){
     this.statService.listeStats().subscribe(
       (resultat : any) => {
-        console.log(resultat)
-        this.statistiques = resultat
+        //console.log("Les résultats issus de la liste des stats sont :", resultat)
+        //this.statistiques = resultat
         this.quartierService.listequartiers().subscribe(
           (res : any) => {
             console.log (res)
@@ -53,7 +53,8 @@ export class StatisqtiquesComponent implements OnInit {
                   console.log(this.transport, this.agression, this.viol, this.vol, this.eclairage)
                 }
               }
-              if(this.vol != 0 && this.transport != 0 && this.viol != 0 && this.agression != 0 && this.eclairage != 0){
+
+              if(this.vol != 0 || this.transport != 0 || this.viol != 0 || this.agression != 0 || this.eclairage != 0){
                 this.niveau=(this.vol * 15 + this.agression * 20 + this.vol * 15 + this.viol * 40 + this.transport * 10 ) / (this.x * 100)
                 this.d = {
                   id : this.id,
@@ -85,6 +86,10 @@ export class StatisqtiquesComponent implements OnInit {
       },
       error => console.log('Erreur lors de la récupération', error)
     )
+  }
+
+  sendAlert(){
+    
   }
 
 }

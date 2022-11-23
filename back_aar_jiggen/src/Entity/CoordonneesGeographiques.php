@@ -33,7 +33,7 @@ use App\Repository\CoordonneesGeographiquesRepository;
  * },
  * "add_coordonnees" = {
  *    "method": "POST",
- *   "path": "/simple_users/coordonnees_geographiques", 
+ *   "path": "/coordonnees_geographiques", 
  *   "normalization_context"={"groups":"coordonnees:read"},
  *   "access_control"="(is_granted('ROLE_USER'))",
  *   "access_control_message"="Vous n'avez pas access à cetteThe Ressource",
@@ -62,18 +62,6 @@ class CoordonneesGeographiques
     private $id;
 
     /**
-     * @ORM\Column(type="decimal", precision=10, scale=0)
-     * @Groups({"coordonnees:read"})
-     */
-    private $latitude;
-
-    /**
-     * @ORM\Column(type="decimal", precision=10, scale=0)
-     * @Groups({"coordonnees:read"})
-     */
-    private $longitude;
-
-    /**
      * @ORM\Column(type="datetime")
      * @Groups({"coordonnees:read"})
      */
@@ -85,33 +73,19 @@ class CoordonneesGeographiques
      */
     private $user;
 
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $latitude;
+
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $longitude;
+
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getLatitude(): ?string
-    {
-        return $this->latitude;
-    }
-
-    public function setLatitude(string $latitude): self
-    {
-        $this->latitude = $latitude;
-
-        return $this;
-    }
-
-    public function getLongitude(): ?string
-    {
-        return $this->longitude;
-    }
-
-    public function setLongitude(string $longitude): self
-    {
-        $this->longitude = $longitude;
-
-        return $this;
     }
 
     public function getDate(): ?\DateTimeInterface
@@ -134,6 +108,30 @@ class CoordonneesGeographiques
     public function setUser(?SimpleUser $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getLatitude(): ?string
+    {
+        return $this->latitude;
+    }
+
+    public function setLatitude(string $latitude): self
+    {
+        $this->latitude = $latitude;
+
+        return $this;
+    }
+
+    public function getLongitude(): ?string
+    {
+        return $this->longitude;
+    }
+
+    public function setLongitude(string $longitude): self
+    {
+        $this->longitude = $longitude;
 
         return $this;
     }

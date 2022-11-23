@@ -14,8 +14,27 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class QuartierController extends AbstractController
 {
-    public function __construct( EntityManagerInterface $manager){
+    public function __construct(EntityManagerInterface $manager, \Swift_Mailer $mailer)
+    {
         $this->manage = $manager;
+        $this->swift= $mailer;
+    }
+
+    public function sendMail($mail,  $password , $telephone){
+        $message = (new \Swift_Message('Aar Jiggen / Informations quartiers'))
+                ->setFrom('amysow0495@gmail.com')
+                ->setTo($mail)
+                ->setBody(
+                    $this->renderView(
+                        'api/index.html.twig',
+                        [
+                            'telephone'=> $telephone,
+                            'password'=>$password
+                        ]
+                        ),
+                        'text/html'
+        );
+        $this->swift->send($message);
     }
     
     /**
@@ -82,5 +101,24 @@ class QuartierController extends AbstractController
                 }
             }    
         }
+    }
+
+    /**
+     * @Route(
+     *  "/api/villes/quartiers/{id}/alertes", 
+     *  name="send_alerte", 
+     *  methods={"POST"},
+     *  defaults={
+     *      "_controller"="\app\ControllerQuartierController::sendAlertes",
+     *      "_api_resource_class"=Quartier::class,
+     *      "_api_collection_operation_name"="send_alerte"
+     *  }
+     * )
+     */
+    public function sendAlertes(Request $request){
+        $requete = json_decode($request->getContent());
+        $quartier = $this->manage->getRepository(Quartier::class)->findOneBy(['id' => intval($requete->quartier)]);
+        $avis = $quartier->getAvis();
+        dd($avis);
     }
 }

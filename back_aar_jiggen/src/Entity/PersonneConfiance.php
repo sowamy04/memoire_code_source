@@ -35,7 +35,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
  * },
  * "add_meritoire" = {
  *    "method": "POST",
- *   "path": "/simple_users/personne_confiances", 
+ *   "path": "/personne_confiances", 
  *   "normalization_context"={"groups":"meritoire:read"},
  *   "access_control"="(is_granted('ROLE_USER'))",
  *   "access_control_message"="Vous n'avez pas access à cetteThe Ressource",

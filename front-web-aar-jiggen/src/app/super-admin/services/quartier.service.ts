@@ -23,7 +23,7 @@ export class QuartierService {
   }
 
   modifierquartier(id : any, dept:any){
-    return this.http.put(this.url+'villes/quartiers/'+id, dept)
+    return this.http.post(this.url+'villes/quartiers/'+id, dept)
   }
 
   deletequartier(id: any){

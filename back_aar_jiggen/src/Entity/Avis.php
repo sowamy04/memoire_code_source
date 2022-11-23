@@ -33,7 +33,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
  * },
  * "add_avis" = {
  *    "method": "POST",
- *   "path": "/simple_users/avis", 
+ *   "path": "/avis", 
  *   "normalization_context"={"groups":"avis:read"},
  *   "access_control"="(is_granted('ROLE_USER'))",
  *   "access_control_message"="Vous n'avez pas access à cette Ressource",

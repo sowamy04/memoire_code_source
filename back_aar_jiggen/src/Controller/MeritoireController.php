@@ -19,7 +19,7 @@ class MeritoireController extends AbstractController
     
     /**
      * @Route(
-     *  "/api/simple_users/personne_confiances", 
+     *  "/api/personne_confiances", 
      *  name="add_meritoire", 
      *  methods={"POST"},
      *  defaults={

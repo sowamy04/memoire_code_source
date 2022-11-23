@@ -66,6 +66,11 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *   "access_control_message"="Vous n'avez pas access à cette Ressource",
  *   "route_name" = "add_quartier",
  * },
+ * "send_alerte" = {
+ *      "method": "POST",
+ *   "path": "/api/villes/quartiers/{id}/alertes",
+ *   "route_name" = "send_alerte",
+ * },
  * },
  * )
  */

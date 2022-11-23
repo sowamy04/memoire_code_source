@@ -30,7 +30,7 @@
           <td> {{stat.niveau}} </td>
           <td>
             <button pButton pRipple icon="pi pi-chart-bar" class="p-button-rounded p-button-primary p-mr-2" [routerLink]="[stat.id+'/chart']"></button>
-            <button pButton pRipple icon="pi pi-exclamation-triangle" class="p-button-rounded p-button-danger p-mr-2"></button>
+            <button pButton pRipple icon="pi pi-exclamation-triangle" class="p-button-rounded p-button-danger p-mr-2" (click)="sendAlert()"></button>
           </td>
       </tr>
   </ng-template>

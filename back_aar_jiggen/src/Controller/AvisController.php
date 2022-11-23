@@ -28,7 +28,7 @@ class AvisController extends AbstractController
 
     /**
      * @Route(
-     *  "/api/simple_users/avis", 
+     *  "/api/avis", 
      *  name="add_avis", 
      *  methods={"POST"},
      *  defaults={
@@ -40,36 +40,35 @@ class AvisController extends AbstractController
      */
     public function ajouter_avis(Request $request, QuartierRepository $quartierRepo, TokenStorageInterface $tokenStorage)
     {
-            $req = $request->getContent();
-            $requete = json_decode($req);
-            $user = $tokenStorage->getToken()->getUser();
-            $avis = new Avis();
-            $eclairage = $requete->eclairagePublique;
-            $vol = $requete->vol;
-            $transport = $requete->transport;
-            $agression = $requete->agression;
-            $quartiers = $quartierRepo->findAll();
-            foreach ($quartiers as $quartier) {
-                if ($quartier->getId() == (int)$requete->quartiers) {
-                    $avis
-                    ->setUser($user)
-                    ->setEclairagePublique($eclairage)
-                    ->setVol($vol)
-                    ->setTransport($transport)
-                    ->setAgression($agression)
-                    ->setDescription($requete->description)
-                    ->setQuartier($quartier)
-                    ->setStatut(true)
-                    ->setViol($requete->viol)
-                    ->setQualiteRoute($requete->qualiteRoute)
-                    ;
-                
-                    $this->manage->persist($avis);
-                    $this->manage->flush();
-                    return new JsonResponse('avis enregistré avec succès');
-                }
+        $req = $request->getContent();
+        $requete = json_decode($req);
+        $user = $tokenStorage->getToken()->getUser();
+        $avis = new Avis();
+        $eclairage = $requete->eclairagePublique;
+        $vol = $requete->vol;
+        $transport = $requete->transport;
+        $agression = $requete->agression;
+        $quartiers = $quartierRepo->findAll();
+        foreach ($quartiers as $quartier) {
+            if ($quartier->getId() == (int)$requete->quartiers) {
+                $avis
+                ->setUser($user)
+                ->setEclairagePublique((int)$eclairage)
+                ->setVol((int)$vol)
+                ->setTransport((int)$transport)
+                ->setAgression((int)$agression)
+                ->setDescription($requete->description)
+                ->setQuartier($quartier)
+                ->setStatut(true)
+                ->setViol((int)$requete->viol)
+                ->setQualiteRoute($requete->qualiteRoute)
+                ;
+                $this->manage->persist($avis);
+                $this->manage->flush();
+                return new JsonResponse('avis enregistré avec succès');
             }
-        
+        }
+        return new JsonResponse("Quartier inexistant, veuillez en choisir un autre svp!");
     }
 
      /**
